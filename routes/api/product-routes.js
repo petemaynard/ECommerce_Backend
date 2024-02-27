@@ -10,10 +10,8 @@ router.get('/', async (req, res) => {
       include: [
          Category,
          {
-            model: Tag,  // Removed   , as: 'products'
+            model: Tag,
             through: ProductTag
-            // include: [
-            //    { model: ProductTag }],     // Removed   , as: 'tags'
          }]
    })
    res.json(productData);
@@ -49,8 +47,8 @@ router.post('/', async (req, res) => {
          if (req.body.tagIds.length) {
             const productTagIdArr = req.body.tagIds.map((tag_id) => {
                return {
-                  product_id: product.prod_id,  // Changed from product.id to product.prod_id
-                  tag_id,  // Changed from tag_id to category_id
+                  product_id: product.prod_id,
+                  tag_id,
                };
             });
             return ProductTag.bulkCreate(productTagIdArr);

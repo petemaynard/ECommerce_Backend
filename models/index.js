@@ -6,11 +6,11 @@ const ProductTag = require('./ProductTag');
 
 // Category can have multiple products but a Product can have only one Category
 Category.hasMany(Product, {
-   foreignKey: 'category_id',  
+   foreignKey: 'category_id',
    onDelete: 'CASCADE',
 });
 Product.belongsTo(Category, {
-   foreignKey: 'category_id',  // Changed from prod_id
+   foreignKey: 'category_id',
 });
 
 
@@ -18,12 +18,11 @@ Product.belongsTo(Category, {
 Product.belongsToMany(Tag, {
    through: ProductTag,
    foreignKey: 'product_id',
-   // as: 'product_tags'
+
 });
 Tag.belongsToMany(Product, {
    through: ProductTag,
    foreignKey: 'tag_id',
-   // as: 'tag_products' // Product has tags that match 
 });
 
 
